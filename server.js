@@ -17,7 +17,6 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies (as
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 app.use(express.static(path.join(__dirname, "client"))); // using static files
 
-
 // Access the parse results as request.body
 app.post("/api/contactus", (req, res) => {
   try {
@@ -29,7 +28,7 @@ app.post("/api/contactus", (req, res) => {
       console.log(
         `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
       );
-      res.json({"message":"done success"}).status(201);
+      res.json({ message: "done success" }).status(201);
     });
   } catch (error) {
     const error_msg = `Error inserting form data into collection`;
@@ -38,9 +37,28 @@ app.post("/api/contactus", (req, res) => {
   }
 });
 
+app.get("/api/CustomerFeedback", (req, res) => {
+  try {
+    MongoClient.connect(URL_MONGODB, async (err, client) => {
+      const db = client.db(DB_NAME);
+      const collection = db.collection(COLLECTIONS_NAMES.customerFeedbackForm);
+
+      const result = await collection.find().limit(3);
+      console.log(
+        `${result.ops} documents were inserted with the _id: ${result.insertedId}`
+      );
+      res.json(result).status(201);
+    });
+  } catch (error) {
+    const error_msg = `Error getting data from collection`;
+    console.log(error_msg);
+    res.send(error_msg).status(500);
+  }
+});
+
 app.post("/api/CustomerFeedback", (req, res) => {
   try {
-    console.log("here", req.body)
+    console.log("here", req.body);
 
     MongoClient.connect(URL_MONGODB, async (err, client) => {
       const db = client.db(DB_NAME);
@@ -50,7 +68,7 @@ app.post("/api/CustomerFeedback", (req, res) => {
       console.log(
         `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
       );
-      res.json({"message":"done success"}).status(201);
+      res.json({ message: "done success" }).status(201);
     });
   } catch (error) {
     const error_msg = `Error inserting form data into collection`;

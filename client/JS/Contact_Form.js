@@ -51,8 +51,7 @@ onload = () => {
         yourName.value = "";
         yourEmail.value = "";
         phoneNumber.value = "";
-        message.value = ""; 
-
+        message.value = "";
       }
     }
   };
