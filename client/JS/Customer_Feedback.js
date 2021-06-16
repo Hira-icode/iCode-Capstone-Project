@@ -4,17 +4,11 @@ onload = async () => {
   const yourEmail = document.getElementById("email");
   const comments = document.getElementById("comments");
 
-  const msg1 = document.getElementById("msg-1");
-  const name1 = document.getElementById("name-1");
-
-  const msg2 = document.getElementById("msg-2");
-  const name2 = document.getElementById("name-2");
-
-  const msg3 = document.getElementById("msg-3");
-  const name3 = document.getElementById("name-3");
-
-  const msg4 = document.getElementById("msg-4");
-  const name4 = document.getElementById("name-4");
+  function onPageInit() {
+    getFeedbacks()
+      .then((feedbacks) => displayFeedbacksOnThePage(feedbacks))
+      .catch((e) => console.log(e));
+  }
 
   function isFormValid() {
     let isValid = false;
@@ -37,23 +31,55 @@ onload = async () => {
     return isValid;
   }
 
-  let getResponse = await fetch("http://localhost:3001/api/CustomerFeedback", {
-    method: "GET",
-  });
+  async function getFeedbacks() {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/CustomerFeedback"
+      );
 
-  let jsonRes = await getResponse.json();
+      if (!response.ok) {
+        const message = `An error has occured: ${response.status}`;
+        throw new Error(message);
+      }
 
-  msg1.innerHTML = jsonRes[0].message;
-  name1.innerHTML = jsonRes[0].name;
+      return await response.json();
+    } catch (e) {
+      alert(e);
+    }
+  }
 
-  msg2.innerHTML = jsonRes[1].message;
-  name2.innerHTML = jsonRes[1].name;
-
-  msg3.innerHTML = jsonRes[2].message;
-  name3.innerHTML = jsonRes[2].name;
-
-  msg4.innerHTML = jsonRes[3].message;
-  name4.innerHTML = jsonRes[3].name;
+  function displayFeedbacksOnThePage(feedbacks) {
+    if (!feedbacks || feedbacks.length == 0) {
+      const fb1 = {
+        comments:
+          "I bought a plot in Kingdom Valley Islamabad. The organizational culture is up to the mark.",
+        name: "- Alia Khan",
+      };
+      const fb2 = {
+        comments:
+          "I am not a fan of real estate agents. I never feel that I can rely on them. However, Ghar Khareedo changed my perception of the field.",
+        name: "- Mubeen Chaudhary",
+      };
+      const fb3 = {
+        comments:
+          "I bought a 5 Marla villa in Icon Valley Phase 1 with Ghar Khareedo and I felt that the company is much loyal to its customer's need.",
+        name: "- Hina Ali",
+      };
+      const fb4 = {
+        comments:
+          "I have shared my idea of dream home and saw Ghar Khareedo build it into a beautiful reality",
+        name: "- Rabia Jamshed",
+      };
+      feedbacks = [fb1, fb2, fb3, fb4];
+    } else {
+      feedbacks.forEach((fb, i) => {
+        const msg = document.getElementById(`msg-${i + 1}`);
+        const name = document.getElementById(`name-${i + 1}`);
+        msg.innerHTML = fb.comments;
+        name.innerHTML = fb.name;
+      });
+    }
+  }
 
   formFeedback.onsubmit = async (e) => {
     e.preventDefault();
@@ -70,10 +96,13 @@ onload = async () => {
         body: formData,
       });
 
-      if (response.status == 201) {
+      if (response.status == 200) {
         // display to the user that form was submitted successfully
         console.log("form submitted success");
+        location.reload();
       }
     }
   };
+
+  onPageInit();
 };

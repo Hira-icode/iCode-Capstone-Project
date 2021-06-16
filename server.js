@@ -20,16 +20,21 @@ app.use(express.static(path.join(__dirname, "client"))); // using static files
 // Access the parse results as request.body
 app.post("/api/contactus", (req, res) => {
   try {
-    MongoClient.connect(URL_MONGODB, async (err, client) => {
-      const db = client.db(DB_NAME);
-      const collection = db.collection(COLLECTIONS_NAMES.contactUsForm);
+    MongoClient.connect(
+      URL_MONGODB,
+      { useUnifiedTopology: true },
+      async (err, client) => {
+        const db = client.db(DB_NAME);
+        const collection = db.collection(COLLECTIONS_NAMES.contactUsForm);
 
-      const result = await collection.insertOne(req.body);
-      console.log(
-        `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
-      );
-      res.json({ message: "done success" }).status(201);
-    });
+        const result = await collection.insertOne(req.body);
+        console.log(
+          `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
+        );
+        client.close();
+        res.json({ message: "done success" }).status(201);
+      }
+    );
   } catch (error) {
     const error_msg = `Error inserting form data into collection`;
     console.log(error_msg);
@@ -39,16 +44,25 @@ app.post("/api/contactus", (req, res) => {
 
 app.get("/api/CustomerFeedback", (req, res) => {
   try {
-    MongoClient.connect(URL_MONGODB, async (err, client) => {
-      const db = client.db(DB_NAME);
-      const collection = db.collection(COLLECTIONS_NAMES.customerFeedbackForm);
+    MongoClient.connect(
+      URL_MONGODB,
+      { useUnifiedTopology: true },
+      (err, client) => {
+        const db = client.db(DB_NAME);
+        const collection = db.collection(
+          COLLECTIONS_NAMES.customerFeedbackForm
+        );
 
-      const result = await collection.find().limit(3);
-      console.log(
-        `${result.ops} documents were inserted with the _id: ${result.insertedId}`
-      );
-      res.json(result).status(201);
-    });
+        collection
+          .find()
+          .limit(4)
+          .toArray((err, result) => {
+            if (err) throw err;
+            client.close();
+            res.json(result).status(200);
+          });
+      }
+    );
   } catch (error) {
     const error_msg = `Error getting data from collection`;
     console.log(error_msg);
@@ -60,16 +74,23 @@ app.post("/api/CustomerFeedback", (req, res) => {
   try {
     console.log("here", req.body);
 
-    MongoClient.connect(URL_MONGODB, async (err, client) => {
-      const db = client.db(DB_NAME);
-      const collection = db.collection(COLLECTIONS_NAMES.customerFeedbackForm);
+    MongoClient.connect(
+      URL_MONGODB,
+      { useUnifiedTopology: true },
+      async (err, client) => {
+        const db = client.db(DB_NAME);
+        const collection = db.collection(
+          COLLECTIONS_NAMES.customerFeedbackForm
+        );
 
-      const result = await collection.insertOne(req.body);
-      console.log(
-        `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
-      );
-      res.json({ message: "done success" }).status(201);
-    });
+        const result = await collection.insertOne(req.body);
+        console.log(
+          `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
+        );
+        client.close();
+        res.json({ message: "done success" }).status(201);
+      }
+    );
   } catch (error) {
     const error_msg = `Error inserting form data into collection`;
     console.log(error_msg);
