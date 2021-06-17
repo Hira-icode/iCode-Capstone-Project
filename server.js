@@ -32,7 +32,7 @@ app.post("/api/contactus", (req, res) => {
           `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`
         );
         client.close();
-        res.json({ message: "done success" }).status(201);
+        res.json({ message: "done success" }).status(200);
       }
     );
   } catch (error) {
@@ -54,7 +54,7 @@ app.get("/api/CustomerFeedback", (req, res) => {
         );
 
         collection
-          .find()
+          .find().sort({'_id': -1})
           .limit(4)
           .toArray((err, result) => {
             if (err) throw err;

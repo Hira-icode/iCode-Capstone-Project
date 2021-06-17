@@ -67,7 +67,7 @@ onload = async () => {
       };
       const fb4 = {
         comments:
-          "I have shared my idea of dream home and saw Ghar Khareedo build it into a beautiful reality",
+          "I have shared my idea of a dream home and saw Ghar Khareedo build it into a beautiful reality.",
         name: "- Rabia Jamshed",
       };
       feedbacks = [fb1, fb2, fb3, fb4];
@@ -84,7 +84,7 @@ onload = async () => {
   formFeedback.onsubmit = async (e) => {
     e.preventDefault();
 
-    console.log("in form submit");
+    console.log("form submit");
     if (isFormValid()) {
       // This is essentially getting all the form data and making like and object
       // such as:
