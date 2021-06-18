@@ -41,7 +41,6 @@ onload = async () => {
         const message = `An error has occured: ${response.status}`;
         throw new Error(message);
       }
-
       return await response.json();
     } catch (e) {
       alert(e);
@@ -49,29 +48,37 @@ onload = async () => {
   }
 
   function displayFeedbacksOnThePage(feedbacks) {
+    const fb1 = {
+      comments:
+        "I bought a plot in Kingdom Valley Islamabad. The organizational culture is up to the mark.",
+      name: "- Alia Khan",
+    };
+    const fb2 = {
+      comments:
+        "I am not a fan of real estate agents. I never feel that I can rely on them. However, Ghar Khareedo changed my perception of the field.",
+      name: "- Mubeen Chaudhary",
+    };
+    const fb3 = {
+      comments:
+        "I bought a 5 Marla villa in Icon Valley Phase 1 with Ghar Khareedo and I felt that the company is much loyal to its customer's need.",
+      name: "- Hina Ali",
+    };
+    const fb4 = {
+      comments:
+        "I have shared my idea of a dream home and saw Ghar Khareedo build it into a beautiful reality.",
+      name: "- Rabia Jamshed",
+    };
+    const feedbacksPlaceholder = [fb1, fb2, fb3, fb4];
     if (!feedbacks || feedbacks.length == 0) {
-      const fb1 = {
-        comments:
-          "I bought a plot in Kingdom Valley Islamabad. The organizational culture is up to the mark.",
-        name: "- Alia Khan",
-      };
-      const fb2 = {
-        comments:
-          "I am not a fan of real estate agents. I never feel that I can rely on them. However, Ghar Khareedo changed my perception of the field.",
-        name: "- Mubeen Chaudhary",
-      };
-      const fb3 = {
-        comments:
-          "I bought a 5 Marla villa in Icon Valley Phase 1 with Ghar Khareedo and I felt that the company is much loyal to its customer's need.",
-        name: "- Hina Ali",
-      };
-      const fb4 = {
-        comments:
-          "I have shared my idea of a dream home and saw Ghar Khareedo build it into a beautiful reality.",
-        name: "- Rabia Jamshed",
-      };
-      feedbacks = [fb1, fb2, fb3, fb4];
-    } else {
+      feedbacks = feedbacksPlaceholder 
+    } 
+    else if (feedbacks.length <4 ){
+      let currentFeedbacklength = feedbacks.length
+      feedbacks = [...feedbacks, ...feedbacksPlaceholder.slice(0, 4-currentFeedbacklength)]
+      
+    }
+
+      console.log(feedbacks)
       feedbacks.forEach((fb, i) => {
         const msg = document.getElementById(`msg-${i + 1}`);
         const name = document.getElementById(`name-${i + 1}`);
@@ -79,7 +86,7 @@ onload = async () => {
         name.innerHTML = fb.name;
       });
     }
-  }
+  
 
   formFeedback.onsubmit = async (e) => {
     e.preventDefault();
