@@ -33,10 +33,6 @@ app.get('/construction&design', (req, res)=>{
 app.get('/realEstateConsultancy', (req, res)=>{
   res.sendFile(__dirname +'/client/DropdownService2.html')
 })
-// Route to Customer Feedback Page
-app.get('/CustomerFeedback', (req, res)=>{
-  res.sendFile(__dirname +'/client/Customer_Feedback.html')
-})
 // Route to Contact Us Page
 app.get('/contactus', (req, res)=>{
   res.sendFile(__dirname +'/client/Contact_Us.html')
