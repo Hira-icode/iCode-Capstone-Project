@@ -25,7 +25,7 @@ onload = () => {
     } else {
       isValid = true;
       alert(
-        `Your Name: ${yourName.value} \n Your Email: ${yourEmail.value} \n Your Phone NUmber: ${phoneNumber.value} \n Your Message: ${message.value}`
+        `Your Name: ${yourName.value} \n Your Email: ${yourEmail.value} \n Your Phone Number: ${phoneNumber.value} \n Your Message: ${message.value}`
       );
     }
     return isValid;
@@ -37,7 +37,7 @@ onload = () => {
     if (isFormValid()) {
       // This is essentially getting all the form data and making like and object
       // such as:
-      // {name: "ygor", email: "myemail.com"} and so on
+      // {name: "hira", email: "myemail.com"} and so on
       const formData = new URLSearchParams(new FormData(formContact));
 
       let response = await fetch("http://localhost:3001/api/contactus", {

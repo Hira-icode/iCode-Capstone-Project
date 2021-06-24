@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
     </head>
         <body>
             <header>
@@ -30,6 +31,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="DropdownService1.html">Construction and Design</a>
                       <a class="dropdown-item" href="DropdownService2.html">Real Estate Consultancy</a>
+                     
+                     
                       <div class="dropdown-divider"></div>
                     </div>
                   </li>
@@ -44,35 +47,94 @@
                 </form>
               </div>
             </nav>
-                <!-- ======= Main ======= -->
-                <h3><strong>Construction and Design</strong></h3>              
-                <p>We use our expertise and latest technology to provide the best construction services</p>
-                <p>Our interior designers and architects are dedicated to make your space beautiful</p>
+               <!-- ======= Construction and Design Section ======= -->
+               <h3><strong>Construction and Design</strong></h3>
+                <br>
+                <h3><em>Take a tour of our work</em></h3>
+                <br>
+                        
+                <p>Design affects human. It changes the view of life and the self-image. According to the opinion specialists, a good design is a space that matches with the</p> 
+                <p>lifestyle, habits and nature of the person. The stylish and organized interior represents the way to feel happy and complete. Design and comfort are primarily</p> 
+                <p>important for the success of a person’s life..</p>
+                  
 
-                <div class="slider">
-                  <span id="slide-1"></span>
-                  <span id="slide-2"></span>
-                  <span id="slide-3"></span>
-                  <span id="slide-4"></span>
-                  <span id="slide-5"></span>
-                  <span id="slide-6"></span>
-                  <div class="image-container">
-                    <img src="./images/CD1.jpg" class="slide" width="500" height="300" />
-                    <img src="./images/CD2.jpg" class="slide" width="500" height="300" />
-                    <img src="./images/CD3.jpg" class="slide" width="500" height="300" />
-                    <img src="./images/CD4.jpg" class="slide" width="500" height="300" />
-                    <img src="./images/CD5.jpg" class="slide" width="500" height="300" />
-                    <img src="./images/CD6.jpg" class="slide" width="500" height="300" />
-                  </div>
-                  <div class="buttons">
-                    <a href="#slide-1"></a>
-                    <a href="#slide-2"></a>
-                    <a href="#slide-3"></a>
-                    <a href="#slide-4"></a>
-                    <a href="#slide-5"></a>
-                    <a href="#slide-6"></a>
-                  </div>
-                </div>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+ 
+  <img src="./images/CD1.jpg" style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="./images/CD2.jpg" style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="./images/CD3.jpg" style="width:100%">
+  <div class="text"></div>
+</div>
+
+
+<div class="mySlides fade">
+  
+  <img src="./images/CD4.png" style="width:100%">
+  <div class="text"></div>
+</div>
+
+
+<div class="mySlides fade">
+  
+  <img src="./images/CD5.jpg" style="width:100%">
+  <div class="text"></div>
+</div>
+
+
+
+<div class="mySlides fade">
+  
+  <img src="./images/CD6.jpg" style="width:100%">
+  <div class="text"></div>
+</div>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
+  
 
                  <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -97,7 +159,6 @@
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="About_Us.html">About us</a></li>
-              <li><a href="Our_Services.html">Our Services</a></li>
               <li><a href="Customer_Feedback.html">Customer Feedback</a></li>
               <li><a href="Contact_Us.html">Contact Us</a></li>
             </ul>
@@ -106,8 +167,8 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><a href="DropdownService1.html">Construction and Design</a></li>
-              <li><a href="DropdownService2.html">Real Estate Consultancy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Construction and Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Real Estate Consultancy</a></li>
             </ul>
           </div>
 

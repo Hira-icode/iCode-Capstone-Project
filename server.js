@@ -17,6 +17,30 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies (as
 app.use(express.json()); // To parse the incoming requests with JSON payloads
 app.use(express.static(path.join(__dirname, "client"))); // using static files
 
+// Route to Home Page
+app.get('/home', (req, res)=>{
+  res.sendFile(__dirname +'/client/index.html')
+})
+// Route to About Us Page
+app.get('/aboutUs', (req, res)=>{
+  res.sendFile(__dirname +'/client/About_Us.html')
+})
+// Route to Construction and Design Page
+app.get('/construction&design', (req, res)=>{
+  res.sendFile(__dirname +'/client/DropdownService1.html')
+})
+// Route to Real Estate Consultancy Page
+app.get('/realEstateConsultancy', (req, res)=>{
+  res.sendFile(__dirname +'/client/DropdownService2.html')
+})
+// Route to Customer Feedback Page
+app.get('/CustomerFeedback', (req, res)=>{
+  res.sendFile(__dirname +'/client/Customer_Feedback.html')
+})
+// Route to Contact Us Page
+app.get('/contactus', (req, res)=>{
+  res.sendFile(__dirname +'/client/Contact_Us.html')
+})
 // Access the parse results as request.body
 app.post("/api/contactus", (req, res) => {
   try {
@@ -98,7 +122,7 @@ app.post("/api/CustomerFeedback", (req, res) => {
   }
 });
 
-// this has to be always the last line of code
+// the last line of code
 app.listen(PORT, () => {
   console.log(`Server running on: http://localhost:${PORT}`);
 });

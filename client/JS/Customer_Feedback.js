@@ -95,7 +95,7 @@ onload = async () => {
     if (isFormValid()) {
       // This is essentially getting all the form data and making like and object
       // such as:
-      // {name: "ygor", email: "myemail.com"} and so on
+      // {name: "hira", email: "myemail.com"} and so on
       const formData = new URLSearchParams(new FormData(formFeedback));
 
       let response = await fetch("http://localhost:3001/api/CustomerFeedback", {
