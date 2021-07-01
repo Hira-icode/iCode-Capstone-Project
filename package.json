@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hira-icode/icode-capstone-project.git"
+    "url": "git+https://github.com/Hira-icode/icode-final-project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Hira-icode/icode-capstone-project.git/issues"
+    "url": "https://github.com/Hira-icode/icode-final-project.git"
   },
-  "homepage": "https://github.com/Hira-icode/icode-capstone-project.git#readme",
+  "homepage": "https://github.com/Hira-icode/icode-final-project.git#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
